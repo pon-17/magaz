@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ-панель</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <link  rel="stylesheet" href="/static/admin2.css">
+</head>
+
+<body>
+
+<header class="header">
+            <div class="header_top">
+                <div class="container_header">
+                    <div class="header_inner">
+                        <a class="logo" href="{{ url_for('index') }}">Типо прикольное название</a>
+                        <nav class="menu">
+                            <ul class="menu_list">
+                                {% if current_user.is_admin %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('admin_panel') }}">Админ-панель</a>
+                                    </li>
+                                {% endif %}
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('index') }}">Главная</a>
+                                </li>
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('favourites') }}">Избранное</a>
+                                </li>
+                                {% if current_user.is_authenticated %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('profile', username=current_user.username) }}">Профиль</a>
+                                    </li>
+                                {% else %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('login') }}">Войти</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+<div class="back">
+        <a href="{{ request.referrer or url_for('index') }}">Назад</a>
+           <h2>Админ-панель</h2>
+    </div>
+
+<div class="container">
+<h2>Пользователи</h2>
+<table>
+    <tr>
+        <th>ID</th><th>Имя</th><th>Email</th><th>Админ</th><th>Заблокирован</th><th>Действия</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ 'Да' if user.is_admin else 'Нет' }}</td>
+        <td>{{ 'Да' if user.block else 'Нет' }}</td>
+        <td>
+            {% if user.id != current_user.id %}
+            <form action="{{ url_for('toggle_admin', user_id=user.id) }}" method="post" style="display:inline;">
+                <button type="submit">{{ 'Убрать админ' if user.is_admin else 'Сделать админом' }}</button>
+            </form>
+            <form action="{{ url_for('toggle_block', user_id=user.id) }}" method="post" style="display:inline;">
+                <button type="submit">{{ 'Разблокировать' if user.block else 'Заблокировать' }}</button>
+            </form>
+            {% else %}
+            -
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Объявления</h2>
+<table>
+    <tr>
+        <th>ID</th><th>Название</th><th>Пользователь</th><th>Действия</th>
+    </tr>
+    {% for good in goods %}
+    <tr>
+        <td>{{ good.id }}</td>
+        <td>{{ good.name }}</td>
+        <td>{{ good.user.username }}</td>
+        <td>
+            <form action="{{ url_for('admin_delete_good', good_id=good.id) }}" method="post" style="display:inline;">
+                <button type="submit">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+    <h2>Удаленные Объявления</h2>
+<table>
+    <tr>
+        <th>ID</th><th>Название</th><th>Пользователь</th><th>Действия</th>
+    </tr>
+    {% for good in del_goods %}
+    <tr>
+        <td>{{ good.id }}</td>
+        <td>{{ good.name }}</td>
+        <td>{{ good.user.username }}</td>
+        <td>
+            <form action="{{ url_for('admin_recover_good', good_id=good.id) }}" method="post" style="display:inline;">
+                <button type="submit">Восстановить</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+body {
+    font-family: "Montserrat", sans-serif; 
+}
+
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+  }
+  
+
+input[type=text], input[type=number], input[type=email], select, input[type=image], input[type=tel]{
+    padding: 20px;
+    margin: 10px 0 30px 0;
+    display:block;      
+    border: none;
+    background: #f1f1f1;
+    width: 600px;
+}
+
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+
+label {
+    padding: 10px 0;
+    font-weight: bold;
+    float: left;
+    width: 600px;
+  }
+
+button[type=submit] {
+    background: #00b3ff;
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 25px;
+    border: 0;
+}
+
+.cancel {
+    color: #000;
+    background:#ebebeb;
+    border-radius: 20px;
+    padding: 10px 25px;
+    border: 0;    
+}
+
+/* .back {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.back a{
+  margin: 10px;
+  color: #00b3ff;
+  text-decoration: none; 
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 20px; 
+
+} */
+  

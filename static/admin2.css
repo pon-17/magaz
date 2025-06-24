@@ -1,0 +1,181 @@
+/* Общие стили */
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* margin: 20px; */
+}
+
+h2 {
+    text-align: center;
+    margin-top: 30px;
+    color: #333;
+}
+
+table {
+    
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff; /* Добавляем белый фон */
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #00b3ff;
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #00b3ff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+
+
+/* Стили для хедера (скопированы из вашего примера) */
+/* .header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.header_top {
+    background-color: #333;
+    padding: 10px 0;
+
+}
+
+.container_header {
+    width: 90%;
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 0 20px; 
+}
+
+.header_inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu_list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.menu_list-item {
+    margin-left: 20px;
+}
+
+.menu_list-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.menu_list-link:hover {
+    color: #00b3ff;
+} */
+
+/* Стили, адаптированные из .profile-container */
+.admin-container {
+    max-width: 800px;  /* увеличено для большего количества информации */
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* скругление углов */
+}
+
+.admin-container h2 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Дополнительные стили для таблицы */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #00b3ff;
+    color: white;
+}
+
+/* Отступы и выравнивание для форм и кнопок */
+form {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+/* Улучшенный стиль кнопок */
+button {
+    background-color: #00b3ff;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0080cc;
+}
+
+/* Улучшенный стиль ссылок в меню */
+.menu_list-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.menu_list-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}

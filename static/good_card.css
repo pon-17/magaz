@@ -1,0 +1,29 @@
+body {
+    font-size: 20px;
+}
+
+.goods-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;  /* Расстояние между карточками */
+    
+}
+
+.good-card {
+    
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    width: 200px;  /* Ширина карточки */
+    transition: transform 0.2s;  /* Анимация при наведении */
+}
+
+.good-card:hover {
+    transform: scale(1.05);  /* Увеличение карточки при наведении */
+}
+
+.good-image {
+    width: 100%;  /* Адаптивная ширина изображения */
+    height: auto;  /* Автоматическая высота для сохранения пропорций */
+}

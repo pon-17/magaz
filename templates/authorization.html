@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="static/authorization.css">
+    <link rel="stylesheet" href="static/main.css">
+
+</head>
+<body>
+
+
+    <div id='head'>
+        <header class="header">
+            <div class="header_top">
+                <div class="container_header">
+                    <div class="header_inner">
+                        <a class="logo" href="{{ url_for('index') }}">Типо прикольное название</a>
+                        <nav class="menu">
+                            <ul class="menu_list">
+                                {% if current_user.is_admin %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('admin_panel') }}">Админ-панель</a>
+                                    </li>
+                                {% endif %}
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('index') }}">Главная</a>
+                                </li>
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('favourites') }}">Избранное</a>
+                                </li>
+                                {% if current_user.is_authenticated %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('profile', username=current_user.username) }}">Профиль</a>
+                                    </li>
+                                {% else %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('login') }}">Войти</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+             </div>
+
+
+    <div class="sign_in">
+    <h1>Регистрация</h1>
+    <div class="container">
+    <form class="sign_in-form">
+        
+        <div class="img"><img id="img" src="static/user.png"></div>
+        <div class="name">
+            <label for="text"></label>
+            <input type="text" id="text" placeholder="Введите ваше имя">
+        </div>
+        <div class="email">
+            <label for="email"></label>
+            <input type="email" id="email" placeholder="Введите ваш мейл">
+        </div>
+        <div>
+            <label for="password"></label>
+            <input type="password" id="password" placeholder="Введите пароль">
+        </div>
+        <div>
+            <label for="password"></label>
+            <input type="password" id="password" placeholder="Повторите пароль">
+        </div>
+        <div class="buttons">
+        <button class="submit" type="submit">Зарегистирироваться</button>
+        <button class="cancel" type="button">Отменить</button>
+        </div>
+        <p>Уже есть аккаунт?
+        <button class="switch" type="button"> Войти</button>
+        </p>
+        </form>
+    </div>
+    </div>
+
+
+<div class="log_in">
+        <h1>Вход</h1>
+    <div class="container">
+        <form class="log_in-form">
+            
+
+            <img id="img" src="static/user.png">
+
+            
+            <div class="email">
+                <label for="email"></label>
+                <input type="email" id="email" placeholder="Введите ваш мейл">
+            </div>
+            <div>
+                <label for="password"></label>
+                <input type="password" id="password" placeholder="Введите пароль">
+            </div>
+            <div class="buttons">
+            <button class="submit" type="submit">Войти</button>
+            <button class="cancel" type="button">Отменить</button>
+            </div>
+            <p>Нет аккаунта? 
+            <button class="switch" type="button">Зарегистрироваться</button>
+            </p>
+
+            </form>
+        </div>
+        </div>
+
+
+<script>
+    const signInForm = document.querySelector('.sign_in');
+    const logInForm = document.querySelector('.log_in');
+    const switchToLogIn = document.querySelector('.sign_in .switch');
+    const switchToSignIn = document.querySelector('.log_in .switch');
+        
+    switchToLogIn.addEventListener('click', () => {
+        signInForm.classList.add('hidden');
+        logInForm.classList.remove('hidden');
+    });
+        
+    switchToSignIn.addEventListener('click', () => {
+        logInForm.classList.add('hidden');
+        signInForm.classList.remove('hidden');
+    });
+</script>
+
+
+
+</body>
+</html>

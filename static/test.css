@@ -1,0 +1,48 @@
+/* .container_set{
+  width: 80%;
+  margin: 0 85px;
+  padding: 10px;
+} */
+
+.container_set {
+  width: 80%;
+  margin: 0 auto; /* Изменено для центрирования по горизонтали */
+  padding: 20px; /* Увеличено для большего отступа */
+  background-color: #fff;
+  border-radius: 10px;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  text-align: center; /* Выравнивание текста по центру */
+  display: flex; /* Используем flexbox для позиционирования элементов */
+  flex-direction: column; /* Располагаем элементы друг под другом */
+  align-items: center; /* Центрируем элементы по горизонтали */
+}
+
+.container_set h2 {
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: #333;
+}
+
+.container_set p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  width: 100%; /* Растягиваем параграф на всю ширину контейнера */
+}
+
+.container_set a {
+  display: block;
+  padding: 15px 20px;
+  font-size: 18px;
+  color: #00b3ff;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+  width: 80%; /* Задаём ширину кнопке */
+  text-align: center; /* Выравниваем текст в кнопке по центру */
+}
+
+a:hover {
+    color: #0048ff;
+}

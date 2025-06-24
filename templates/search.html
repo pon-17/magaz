@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <link  rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+    <div id="head">
+        <header class="header">
+            <div class="header_top">
+                <div class="container_header">
+                    <div class="header_inner">
+                        <a class="logo" href="{{ url_for('index') }}">Типо прикольное название</a>
+                        <nav class="menu">
+                            <ul class="menu_list">
+                                {% if current_user.is_admin %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('admin_panel') }}">Админ-панель</a>
+                                    </li>
+                                {% endif %}
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('index') }}">Главная</a>
+                                </li>
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('favourites') }}">Избранное</a>
+                                </li>
+                                {% if current_user.is_authenticated %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('profile', username=current_user.username) }}">Профиль</a>
+                                    </li>
+                                {% else %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('login') }}">Войти</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="header_btn">
+            <div class="category-dropdown">
+                <button class="dropdown-toggle">Категории</button>
+                <div class="dropdown-menu">
+                    {% for category in categories %}
+                        <a href="{{ url_for('products_view', category_name=category.categ_name) }}">{{ category.categ_name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="post_ad_container">
+                <form action="{{ url_for('new_product') }}" method="get">
+                    <button id="btn_new_pr" type="submit">Разместить свое объявление</button>
+                </form>
+            </div>
+            <div class="search_container">
+                <form action="{{ url_for('search_products') }}" method="get">
+                    <input class="search" type="search" name="search_bar" placeholder="Поиск товара" />
+                    <button id="btn_search" type="submit">Поиск</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<!--    <div class="sidebar">-->
+<!--        <h2>Категории</h2>-->
+<!--        <ul>-->
+<!--            {% for category in categories %}-->
+<!--                <li><a href="{{ url_for('products_view', category_name=category.categ_name) }}">{{ category.categ_name }}</a></li>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+<!--    </div>-->
+
+    <main class="goods-container">
+        <div class="goods-list">
+            {% for good in goods %}
+                <div class="good-card">
+                    <a href="{{ url_for('good_detail', good_id=good.id) }}">
+                        {% if good.images and good.images|length > 0 %}
+                            <img src="data:image/jpeg;base64,{{ good.images[0].image_data|b64encode }}" alt="{{ good.name }}" class="good-image" />
+                        {% else %}
+                            <img src="{{ url_for('static', filename='default_image.jpg') }}" alt="Нет изображения" class="good-image" />
+                        {% endif %}
+                        <h3>{{ good.name }}</h3>
+                        <p>Цена: {{ good.price }} руб.</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        {% if not goods %}
+            <p>Товары не найдены.</p>
+        {% endif %}
+    </main>
+
+</body>
+</html>

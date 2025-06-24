@@ -1,0 +1,43 @@
+.filters-form {
+    margin: 20px;
+    padding: 10px;
+    background: #f1f1f1;
+    border-radius: 8px;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+ input,
+ select,
+.filters button {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+
+}
+
+.filters input,
+.filters select{
+    display:block;      
+    border: none;
+    background: #f1f1f1;   
+}
+
+button[type=submit] {
+    font-size: 14px;
+    background-color: #0048ff;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+
+}
+
+.reset-button {
+    font-size: 14px;   
+    color: #ff4d4d; 
+}

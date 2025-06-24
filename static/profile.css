@@ -1,0 +1,55 @@
+.profile-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: "Montserrat", sans-serif;
+  
+    text-align: center;
+}
+
+.profile-container h1 {
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: #333;
+}
+
+.profile-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-menu li {
+    margin-bottom: 20px;
+}
+
+.profile-menu a {
+    display: block;
+    padding: 15px 20px;
+    font-size: 21px;
+    color: #00b3ff;
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #0048ff;
+}
+
+.logout-btn {
+    width: 60%;
+    padding: 15px 20px;
+    font-size:21px;
+    color: white;
+    background-color: #ff4d4d;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #e04343;
+}

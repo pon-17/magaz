@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #f9f9f9;
+    margin: 20px;
+    color: #333;
+}
+
+h1, h2 {
+    color: #0048ff;
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 15px;
+}
+
+th {
+    background-color: #0048ff;
+    color: white;
+    font-weight: 600;
+}
+
+tr:hover td {
+    background-color: #f5faff;
+}
+
+button {
+    background-color: #0048ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 6px;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 3px 2px rgba(0,72,255,0.5);
+}
+
+/* Для форм (inline) */
+form {
+    display: inline;
+}
+
+/* Стили для "заблокирован" и "админ" статусов */
+td:nth-child(4), td:nth-child(5) {
+    font-weight: 600;
+    color: #222;
+}
+
+/* Подсветка статусов */
+td:nth-child(4):contains('Да'), td:nth-child(5):contains('Да') {
+    color: #007700;
+    font-weight: 700;
+}
+
+td:nth-child(4):contains('Нет'), td:nth-child(5):contains('Нет') {
+    color: #aa0000;
+    font-weight: 600;
+}
+
+/* Если хотите, можно добавить ограничение ширины страницы */
+body > div {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Если планируете боковое меню, можно добавить отступ для контента */
+.goods-container {
+    margin-left: 220px; /* если есть боковое меню */
+    padding: 20px;
+}
+
+/* Стили для ссылок в таблице (если добавите) */
+
+/* Стили для кнопок в форме */
+button[type=submit] {
+    background: #00b3ff;
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 25px;
+    border: 0;
+}
+
+button.cancel {
+    color: #000;
+    background:#ebebeb;
+    border-radius: 20px;
+    padding: 10px 25px;
+    border: 0;    
+}

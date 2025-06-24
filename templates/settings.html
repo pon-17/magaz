@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройки</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="/static/test.css">
+
+
+
+</head>
+<body>
+    <div id='head'>
+               <header class="header">
+            <div class="header_top">
+                <div class="container_header">
+                    <div class="header_inner">
+                        <a class="logo" href="{{ url_for('index') }}">Типо прикольное название</a>
+                        <nav class="menu">
+                            <ul class="menu_list">
+                                {% if current_user.is_admin %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('admin_panel') }}">Админ-панель</a>
+                                    </li>
+                                {% endif %}
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('index') }}">Главная</a>
+                                </li>
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('favourites') }}">Избранное</a>
+                                </li>
+                                {% if current_user.is_authenticated %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('profile', username=current_user.username) }}">Профиль</a>
+                                    </li>
+                                {% else %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('login') }}">Войти</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        </div>
+
+    <div class="back">
+        <a href="{{ request.referrer or url_for('index') }}">Назад</a>
+        <h2>Настройки</h2>
+    </div>
+
+<div class="container_set">
+    <h2>Ваши данные</h2>
+    <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+    <a href="{{ url_for('update_username') }}">Изменить имя пользователя</a>
+    <p><strong>Электронная почта:</strong> {{ user.email }}</p>
+    <a href="{{ url_for('update_password') }}">Изменить пароль пользователя</a>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Типо прикольное название</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="/static/new_product.css">
+</head>
+<body>
+
+
+    <div id='head'>
+                <header class="header">
+            <div class="header_top">
+                <div class="container_header">
+                    <div class="header_inner">
+                        <a class="logo" href="{{ url_for('index') }}">Типо прикольное название</a>
+                        <nav class="menu">
+                            <ul class="menu_list">
+                                {% if current_user.is_admin %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('admin_panel') }}">Админ-панель</a>
+                                    </li>
+                                {% endif %}
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('index') }}">Главная</a>
+                                </li>
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('favourites') }}">Избранное</a>
+                                </li>
+                                {% if current_user.is_authenticated %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('profile', username=current_user.username) }}">Профиль</a>
+                                    </li>
+                                {% else %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('login') }}">Войти</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+             </div>
+
+             <!-- <div class="header_btn">
+                 <form action="new_product.html" method="get">
+                     <button id="btn_new_pr" type="submit">Разместить свое объявление</button>
+                 </form>
+             </div> -->
+
+
+
+     <div class="back">
+        <a href="{{ request.referrer or url_for('index') }}">Назад</a>
+        <h2>Новое объявление</h2>
+    </div>
+
+
+    <div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        <div class="item_name">
+            <label for="name">
+                Название товара
+                <input type="text" id="name" name="name" placeholder="Введите название" autocomplete="disabled">
+            </label>
+        </div>
+
+       <div class="item_price">
+            <label for="price">
+                Цена
+                <input type="number" inputmode="numeric" id="price" name="price" autocomplete="disabled"  data-marker="price">
+            </label>
+       </div>
+       <div class="item_condition">
+            <label for="condition">
+                Состояние товара
+            <select id="condition" name="condition">
+                <option value="new">Новый</option>
+                <option value="used">Б\у</option>
+            </select>
+        </label>
+       </div>
+       <div class="item_category">
+        <label for="category">
+            Категория товара
+        <select id="category" name="category">
+            <option value=""></option>
+            {% for category in categories %}
+                <option value="{{ category.categ_name }}">{{ category.categ_name }}</option>
+            {% endfor %}
+        </select>
+    </label>
+       </div>
+       <div class="item_description">
+            <label for="description" >
+                Описание товара
+            <input type="text" id="description" name="description" placeholder="Введите описание товара" autocomplete="disabled">
+        </label>
+        </div>
+        <div class="item_photo">
+            <label for="photo">
+                Добавьте фото товара
+            <input type="file" id="photo" name="photo" accept="image/*" multiple required>
+        </label>
+        </div>
+
+        <div class="item_category">
+        <label for="city">
+            Выберете город
+        <select id="city" name="city">
+            <option value=""></option>
+            {% for city in cities %}
+                <option value="{{ city.city }}">{{ city.city }}</option>
+            {% endfor %}
+        </select>
+    </label>
+       </div>
+        <div class="item_adress">
+            <label for="address">
+                Ваш адрес
+            <input type="text" id="address" name="address" autocomplete="disabled">
+        </label>
+        </div>
+        <div class="item_phone-number">
+            <label for="phone_number">
+                Номер телефона
+            <input type="tel" id="phone_number" name="phone_number" inputmode="numeric" autocomplete="disabled">
+<!--                <input type="tel" id="phone_number" name="phone_number" placeholder="+7 (999) 999-99-99" required pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$">-->
+        </label>
+        <button type="submit">Разместить</button>
+        <button class="cancel" type="button">Отменить</button>
+        </div>
+
+
+
+    </form>
+
+
+</div>
+</body>
+</html>

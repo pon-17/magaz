@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои объявления</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <link  rel="stylesheet" href="/static/index.css">
+
+</head>
+<body>
+    <div id='head'>
+        <header class="header">
+            <div class="header_top">
+                <div class="container_header">
+                    <div class="header_inner">
+                        <a class="logo" href="{{ url_for('index') }}">Типо прикольное название</a>
+                        <nav class="menu">
+                            <ul class="menu_list">
+                                {% if current_user.is_admin %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('admin_panel') }}">Админ-панель</a>
+                                    </li>
+                                {% endif %}
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('index') }}">Главная</a>
+                                </li>
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('favourites') }}">Избранное</a>
+                                </li>
+                                {% if current_user.is_authenticated %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('profile', username=current_user.username) }}">Профиль</a>
+                                    </li>
+                                {% else %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('login') }}">Войти</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        </div>
+
+    <div class="back">
+        <a href="{{ request.referrer or url_for('index') }}">Назад</a>
+        <h2>Мои объявления</h2>
+    </div>
+
+    <div class="container">
+
+        {% if goods %}
+            <div class="goods-container">
+                <div class="goods-list">
+                    {% for good in goods %}
+                    <div class="good-card">
+                       <a href="{{ url_for('good_detail', good_id=good.id) }}">
+                        {% if good.images and good.images|length > 0 %}
+                            <img src="data:image/jpeg;base64,{{ good.images[0].image_data|b64encode }}" alt="{{ good.name }}" class="good-image" />
+                        {% else %}
+                            <img src="{{ url_for('static', filename='default_image.jpg') }}" alt="Нет изображения" class="good-image" />
+                        {% endif %}
+                        <h3>{{ good.name }}</h3>
+                        <p>Цена: {{ good.price }} руб.</p>
+                        <p>Состояние: {{ good.condition }}</p> <!-- Добавлено отображение состояния товара -->
+                    </a>
+                        {% if current_user.is_authenticated and good.user_id == current_user.id %}
+                            <a href="{{ url_for('edit_product', good_id=good.id) }}">Редактировать объявление</a>
+                        {% endif %}
+                        <form action="{{ url_for('delete_good', good_id=good.id) }}" method="POST">
+                            <button type="submit" id="btn_new_pr" class="button">Удалить объявление</button>
+                        </form>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <p>У вас пока нет объявлений.</p>
+            <a href="{{ url_for('new_product') }}">Создать объявление</a>
+        {% endif %}
+</div>
+
+
+</body>
+</html>

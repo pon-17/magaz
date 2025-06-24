@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ good.name }}</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="/static/test2.css">
+<!--    <link rel="stylesheet" href="/static/gallery.css">-->
+</head>
+<body>
+        <header class="header">
+            <div class="header_top">
+                <div class="container_header">
+                    <div class="header_inner">
+                        <a class="logo" href="{{ url_for('index') }}">Типо прикольное название</a>
+                        <nav class="menu">
+                            <ul class="menu_list">
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('index') }}">Главная</a>
+                                </li>
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('favourites') }}">Избранное</a>
+                                </li>
+                                {% if current_user.is_authenticated %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('profile', username=current_user.username) }}">Профиль</a>
+                                    </li>
+                                {% else %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('login') }}">Войти</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+<!--   <div class="back">-->
+<!--        <a href="{{url_for('index')}}">На главную</a>-->
+<!--        <h2>{{ good.name }}</h2>-->
+<!--    </div>-->
+
+
+<div class="good-detail-container">
+
+    <div class="back">
+        <a href="{{ request.referrer or url_for('index') }}">Назад</a>
+        <h2>{{ good.name }}</h2>
+    </div>
+
+        <div class="product-card">
+            <div class="image-gallery">
+                <div class="main-image">
+                    {% if images and images|length > 0 %}
+                        <img id="mainImage" src="data:image/jpeg;base64,{{ images[0].image_data|b64encode }}" alt="{{ good.name }}" class="good-detail-image">
+                    {% else %}
+                        <img id="mainImage" src="{{ url_for('static', filename='default_image.jpg') }}" alt="Нет изображения" class="good-detail-image">
+                    {% endif %}
+                </div>
+                <div class="thumbnail-images">
+                    {% for img in images %}
+                        <img src="data:image/jpeg;base64,{{ img.image_data|b64encode }}" alt="Thumbnail" class="thumbnail" onclick="changeMainImage(this.src)">
+                    {% endfor %}
+                </div>
+            </div>
+
+                <script>
+                function changeMainImage(src) {
+                    document.getElementById('mainImage').src = src;
+                }
+                </script>
+
+
+    <div class="good-details">
+        <p><strong>Цена:</strong> {{ good.price }} руб.</p>
+        <p><strong>Категория:</strong> {{ good.category.categ_name }}</p>
+        <p><strong>Состояние:</strong> {% if good.condition == 'new' %} Новый {% else %} Б/у {% endif %}</p>
+        <p><strong>Адрес:</strong> {{ good.city.city }}, {{ good.address }}</p>
+        <p><strong>Телефон:</strong> {{ good.phone_number }}</p>
+        <p><strong>Владелец:</strong><a href="{{url_for('owner', user_id=good.user_id)}}"> {{good.user.username}}</a></p>
+
+        <form action="{{ url_for('add_to_favorites', good_id=good.id) }}" method="POST">
+            {% if good.is_favorited %}
+            <button type="submit" class="add-to-favorites-button">Удалить из избранного</button>
+                {% else %}
+            <button type="submit" class="add-to-favorites-button">Добавить в избранное</button>
+                {% endif %}
+        </form>
+
+</div>
+            <div class="good-description">
+                <p ><strong>Описание:</strong> {{ good.description }}</p>
+            </div>
+
+</div>
+
+<!--<a href="{{ url_for('index') }}" class="back-button">Назад к товарам</a>-->
+
+
+</div>
+</body>
+</html>

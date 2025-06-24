@@ -1,0 +1,138 @@
+/* Общие стили */
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #f4f4f4; /* Светло-серый фон */
+    color: #333; /* Основной цвет текста */
+    margin: 0;
+    padding: 0;
+}
+
+/* Стили для шапки */
+#head {
+    background-color: #fff; /* Белый фон шапки */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Небольшая тень */
+    padding: 10px 0;
+}
+
+.header {
+    width: 100%;
+}
+
+.header_top {
+    background-color: #00b3ff;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center; /* Центрирование логотипа и меню */
+}
+
+.container_header {
+    max-width: 1200px; /* Максимальная ширина контейнера */
+    margin: 0 auto; /* Центрирование контейнера */
+    padding: 0 20px; /* Отступы по бокам */
+}
+
+.header_inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+}
+
+
+
+.menu_list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px; /* Отступ между элементами меню */
+}
+
+
+
+.menu_list-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.menu_list-link:hover {
+    color: #ddd; /* Цвет ссылки при наведении */
+}
+
+/* Стили для кнопки "Назад" и заголовка */
+.back {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.back a {
+    color: #00b3ff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.back a:hover {
+    color: #0077b3;
+}
+
+.back h2 {
+    margin-top: 10px;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Стили для контейнера с данными пользователя */
+.container_set {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.container_set h2 {
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: #333;
+}
+
+.container_set p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.container_set a {
+    display: block;
+    padding: 15px 20px;
+    font-size: 18px;
+    color: #00b3ff;
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.container_set a:hover {
+    border-color: #00b3ff;
+    background-color: rgba(0, 179, 255, 0.05);
+}
+
+/* Общие улучшения */
+
+/* Убраны лишние комментарии */
+/* Добавлены комментарии для лучшего понимания стилей */
+/* Оптимизированы значения для лучшей читаемости */

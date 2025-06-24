@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="/static/profile.css">
+</head>
+<body>
+    <div id='head'>
+        <header class="header">
+            <div class="header_top">
+                <div class="container_header">
+                    <div class="header_inner">
+                        <a class="logo" href="{{ url_for('index') }}">Типо прикольное название</a>
+                        <nav class="menu">
+                            <ul class="menu_list">
+                                {% if current_user.is_admin %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('admin_panel') }}">Админ-панель</a>
+                                    </li>
+                                {% endif %}
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('index') }}">Главная</a>
+                                </li>
+                                <li class="menu_list-item">
+                                    <a class="menu_list-link" href="{{ url_for('favourites') }}">Избранное</a>
+                                </li>
+                                {% if current_user.is_authenticated %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('profile', username=current_user.username) }}">Профиль</a>
+                                    </li>
+                                {% else %}
+                                    <li class="menu_list-item">
+                                        <a class="menu_list-link" href="{{ url_for('login') }}">Войти</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        </div>
+
+
+
+
+    <div class="profile-container">
+    <h1>Профиль пользователя: {{ user.username }}</h1>
+
+    <ul class="profile-menu">
+        <li><a href="{{ url_for('settings', username=current_user.username) }}">Настройки</a></li>
+        <li><a href="{{ url_for('favourites') }}">Избранное</a></li>
+        <li><a href="{{ url_for('my_ads') }}">Мои товары</a></li>
+        <li>
+
+            <form action="{{ url_for('logout') }}" method="post">
+                <button type="submit" class="logout-btn">Выйти из аккаунта</button>
+            </form>
+        </li>
+    </ul>
+</div>
+
+
+
+
+</body>
+</html>
